@@ -1,0 +1,446 @@
+/* ============================================
+   DIGITAL LEDGER MIND MAP — Pixel Perfect Spec
+   ============================================ */
+
+.mindmapPage {
+  width: calc(100% + 80px);
+  height: 100vh;
+  margin: -40px;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Top Bar */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: #111827;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 20;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.topBarLogo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #f59e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111827;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.topBarTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.topBarSubtitle {
+  font-size: 12.5px;
+  color: #94a3b8;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.topBarActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topBarBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  color: #f1f5f9;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.topBarBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Legend Bar */
+.legendBar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 28px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  z-index: 10;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.legendGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.legendGroupLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.legendDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendFootnote {
+  font-size: 11px;
+  color: #94a3b8;
+  font-style: italic;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* Flow container */
+.flowContainer {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  background: #f8fafc;
+}
+
+/* ============================================
+   CUSTOM NODE COMPONENTS
+   ============================================ */
+
+/* Base Card */
+.nodeCard {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  width: 260px;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  position: relative;
+}
+
+.nodeCardClickable {
+  cursor: pointer;
+}
+
+.nodeCardClickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* --------------------------------------------
+   LEVEL 0: ROOT ATHLETE NODE
+   -------------------------------------------- */
+.rootNode {
+  background: #111827;
+  border: 1.5px solid #1f2937;
+  border-radius: 14px;
+  padding: 18px 20px;
+  width: 260px;
+  box-sizing: border-box;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.rootTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.rootLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #f59e0b;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rootAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f59e0b;
+  color: #111827;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rootName {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.01em;
+}
+
+.rootMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.rootId {
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.rootAgePill {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.rootSubline {
+  font-size: 12px;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* --------------------------------------------
+   LEVEL 1: ACHIEVEMENT NODE
+   -------------------------------------------- */
+.achievementNode {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1.5px solid #e2e8f0;
+  padding: 16px 18px;
+  width: 260px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.achievementNode:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.achHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.achCategoryTag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.achChevron {
+  font-size: 13px;
+  font-weight: 700;
+  color: #94a3b8;
+  transition: transform 0.2s ease;
+}
+
+.achTitle {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+  line-height: 1.35;
+}
+
+.achSport {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.achFooterRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.achAgeBadge {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.achYear {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* --------------------------------------------
+   LEVEL 2: DETAIL BRANCH NODES
+   -------------------------------------------- */
+.detailNode {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1.5px solid #e2e8f0;
+  padding: 16px 18px;
+  width: 260px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.detailHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.detailHeaderTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.detailFieldGroup {
+  margin-bottom: 8px;
+}
+
+.detailFieldGroup:last-child {
+  margin-bottom: 0;
+}
+
+.detailFieldLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.detailFieldValue {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.35;
+}
+
+/* Status Verified tag */
+.statusVerified {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+/* --------------------------------------------
+   LEVEL 3: ISSUED & VERIFIED NODE
+   -------------------------------------------- */
+.issuedVerifiedNode {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1.5px solid #e2e8f0;
+  border-left: 4px solid #b45309;
+  padding: 16px 18px;
+  width: 260px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.issuedHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #b45309;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #fef3c7;
+}
+
+/* React Flow Overrides */
+.flowContainer :global(.react-flow__attribution) {
+  display: none;
+}
+
+.flowContainer :global(.react-flow__edge-path) {
+  stroke-width: 2;
+}
+
+.flowContainer :global(.react-flow__controls),
+.flowContainer :global(.react-flow__minimap) {
+  display: none;
+}

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1050" width="800" height="1050">
+  <rect x="10" y="10" width="780" height="1030" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <text x="400" y="70" font-family="Arial" font-size="24" font-weight="bold" fill="#0f172a" text-anchor="middle">SPORTS AUTHORITY OF INDIA</text>
+  <text x="400" y="95" font-family="Arial" font-size="14" fill="#475569" text-anchor="middle">National Coaching Camp Selection Division</text>
+  <line x1="50" y1="120" x2="750" y2="120" stroke="#cbd5e1" stroke-width="1"/>
+  
+  <text x="50" y="160" font-family="Arial" font-size="12" font-weight="bold" fill="#334155">Ref No: SAI/NCOE/ATH/2024/114</text>
+  <text x="650" y="160" font-family="Arial" font-size="12" font-weight="bold" fill="#334155">Date: 15-Dec-2024</text>
+  
+  <text x="400" y="210" font-family="Arial" font-size="16" font-weight="bold" text-decoration="underline" fill="#1e293b" text-anchor="middle">OFFICIAL SELECTION LETTER</text>
+  
+  <g font-family="Arial" font-size="14" fill="#334155">
+    <text x="50" y="270">To,</text>
+    <text x="50" y="295" font-weight="bold">Arjun Prakash Bhosale</text>
+    <text x="50" y="320">Maharashtra State</text>
+    
+    <text x="50" y="370">Subject: Selection for the National Athletics Coaching Camp 2025.</text>
+    
+    <text x="50" y="410">Dear Arjun,</text>
+    
+    <text x="50" y="440">We are pleased to inform you that based on your outstanding performance in the recent</text>
+    <text x="50" y="465">National Junior Championships (Gold in 100m), you have been officially selected for</text>
+    <text x="50" y="490">the <tspan font-weight="bold">National Athletics Coaching Camp</tspan> organized by Sports Authority of India.</text>
+    
+    <text x="50" y="540">Camp Details:</text>
+    <text x="70" y="570">• Venue: SAI Netaji Subhas National Institute of Sports, Patiala</text>
+    <text x="70" y="595">• Duration: 05 Jan 2025 to 25 Feb 2025</text>
+    <text x="70" y="620">• Category: Sprinters (U-18)</text>
+    
+    <text x="50" y="670">Please report to the camp venue by 04 Jan 2025 with your original certificates and</text>
+    <text x="50" y="695">medical fitness report.</text>
+    
+    <text x="50" y="750">Congratulations on your selection!</text>
+  </g>
+  
+  <text x="650" y="850" font-family="Arial" font-size="14" font-weight="bold" fill="#1e293b" text-anchor="middle">Director (Sports)</text>
+  <text x="650" y="870" font-family="Arial" font-size="12" fill="#475569" text-anchor="middle">Sports Authority of India</text>
+</svg>

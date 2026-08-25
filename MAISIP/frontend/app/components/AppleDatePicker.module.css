@@ -1,0 +1,305 @@
+.datePickerContainer {
+  position: relative;
+  width: 100%;
+}
+
+.datePickerContainer :global(.react-datepicker-wrapper) {
+  width: 100%;
+  display: block;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.appleInput {
+  width: 100%;
+  padding: 12px 16px;
+  padding-right: 44px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  color: #0f172a;
+  outline: none;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+  cursor: text;
+}
+
+.appleInput:hover:not(:disabled) {
+  border-color: #94a3b8;
+}
+
+.appleInput:focus {
+  border-color: #007AFF;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15);
+}
+
+.appleInput:disabled {
+  background: #f8fafc;
+  color: #94a3b8;
+  cursor: not-allowed;
+  border-color: #e2e8f0;
+}
+
+.calendarIconButton {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendarIconButton:hover:not(:disabled) {
+  color: #007AFF;
+  background-color: #f1f5f9;
+}
+
+.calendarIconButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.calendarIcon {
+  display: block;
+}
+
+/* Base popup styling */
+.applePopper {
+  z-index: 99999 !important;
+}
+
+.appleCalendar {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+  background-color: #ffffff !important;
+  padding: 14px !important;
+  overflow: hidden;
+  width: 320px !important;
+  min-width: 320px !important;
+  max-width: 320px !important;
+  box-sizing: border-box !important;
+}
+
+/* Custom Header */
+.customHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.navButton:hover:not(:disabled) {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  color: #007AFF;
+}
+
+.navButton:active:not(:disabled) {
+  background-color: #f1f5f9;
+  transform: scale(0.96);
+}
+
+.navButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: #f1f5f9;
+}
+
+.headerSelectors {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.selectWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.headerSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 5px 22px 5px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.headerSelect:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.headerSelect:focus {
+  border-color: #007AFF;
+  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.15);
+  background-color: #ffffff;
+}
+
+.selectChevron {
+  position: absolute;
+  right: 6px;
+  pointer-events: none;
+  color: #64748b;
+}
+
+/* React Datepicker Overrides */
+.appleCalendar :global(.react-datepicker__header) {
+  background-color: transparent !important;
+  border-bottom: none !important;
+  padding: 0 !important;
+}
+
+.appleCalendar :global(.react-datepicker__day-names) {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin: 6px 0 4px 0 !important;
+  padding: 0 !important;
+}
+
+.appleCalendar :global(.react-datepicker__day-name) {
+  color: #94a3b8 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  width: 36px !important;
+  height: 24px !important;
+  line-height: 24px !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+.appleCalendar :global(.react-datepicker__month) {
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.appleCalendar :global(.react-datepicker__week) {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin: 0 !important;
+}
+
+/* Days */
+.appleCalendar :global(.react-datepicker__day) {
+  color: #334155 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  transition: all 0.15s ease !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+}
+
+.appleCalendar :global(.react-datepicker__day:hover:not(.react-datepicker__day--selected):not(.react-datepicker__day--disabled)) {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.appleCalendar :global(.react-datepicker__day--selected) {
+  background-color: #007AFF !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 3px 8px rgba(0, 122, 255, 0.35) !important;
+}
+
+.appleCalendar :global(.react-datepicker__day--keyboard-selected) {
+  background-color: #eff6ff !important;
+  color: #007AFF !important;
+}
+
+.appleCalendar :global(.react-datepicker__day--today) {
+  font-weight: 700 !important;
+  color: #007AFF !important;
+  position: relative;
+}
+
+.appleCalendar :global(.react-datepicker__day--selected.react-datepicker__day--today) {
+  color: #ffffff !important;
+}
+
+.appleCalendar :global(.react-datepicker__day--outside-month) {
+  color: #cbd5e1 !important;
+  opacity: 0.6;
+}
+
+.appleCalendar :global(.react-datepicker__day--disabled) {
+  color: #e2e8f0 !important;
+  cursor: not-allowed !important;
+  opacity: 0.4;
+}
+
+/* Animations */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.applePopper[data-placement^="bottom"] .appleCalendar {
+  animation: popIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top center;
+}
+
+.applePopper[data-placement^="top"] .appleCalendar {
+  animation: popIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom center;
+}

@@ -1,0 +1,38 @@
+.themeRoot {
+  --font-display: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+
+  --ease-out-apple: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+
+  --radius-card: 16px;
+  --radius-control: 10px;
+
+  --color-bg: #F5F5F7;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #1D1D1F;
+  --color-text-secondary: #6E6E73;
+  --color-accent: #0A84FF;
+  --color-divider: rgba(60,60,67,0.12);
+
+  --shadow-card: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--duration-base) var(--ease-out-apple);
+}
+
+.button {
+  border-radius: var(--radius-control);
+  background-color: var(--color-accent);
+  color: #fff;
+  transition: transform var(--duration-fast) var(--ease-out-apple);
+}
+
+.button:active {
+  transform: scale(0.97);
+}

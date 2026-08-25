@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+opencv-python-headless
+librosa
+mediapipe
+torch
+torchvision
+torchaudio
+transformers
+ffmpeg-python
+pymediainfo
+PyExifTool
+pydantic
+python-multipart
+numpy

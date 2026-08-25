@@ -1,0 +1,339 @@
+
+<h2 class="sr-only">MAISIP achievement ledger with horizontal category rails. Clicking a node floats a detail card directly above it, overlapping the tree. Click outside or X to close.</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.outer{display:flex;gap:0;align-items:stretch;min-height:360px;position:relative}
+
+/* athlete card */
+.a-col{width:168px;flex-shrink:0;padding:12px 0 12px 12px;display:flex;align-items:center}
+.a-card{background:#1A237E;border-radius:12px;padding:14px;color:#fff;width:100%}
+.a-init{width:34px;height:34px;border-radius:50%;background:#F57F17;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;margin-bottom:8px}
+.a-name{font-size:12px;font-weight:500;line-height:1.3;margin-bottom:5px}
+.a-id{font-size:10px;opacity:.65;margin-bottom:5px}
+.a-tag{font-size:10px;background:rgba(255,255,255,.18);border-radius:4px;padding:2px 6px;display:inline-block;margin-bottom:5px}
+.a-sport{font-size:10px;opacity:.75;line-height:1.4}
+
+/* connector from card to rails */
+.a-connector{width:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative}
+.a-connector-line{width:20px;height:1.5px;background:var(--border-strong)}
+
+/* rails area */
+.rails-area{flex:1;overflow-x:auto;padding:10px 16px 10px 0;position:relative}
+.rails-wrap{display:flex;flex-direction:column;gap:0;min-width:460px;position:relative}
+
+.rail{display:flex;align-items:center;gap:0;position:relative;min-height:54px}
+.cat-label{width:100px;flex-shrink:0;padding-left:4px;display:flex;align-items:center;gap:5px}
+.cat-dot{width:7px;height:7px;border-radius:50%}
+.cat-text{font-size:10px;font-weight:500;color:var(--text-secondary)}
+
+/* horizontal track line */
+.track{position:absolute;left:100px;right:0;height:1.5px;top:50%;z-index:0}
+
+/* nodes */
+.nodes{display:flex;align-items:center;gap:8px;flex:1;position:relative;z-index:1}
+
+.node{flex-shrink:0;min-width:128px;max-width:160px;border-radius:8px;border:1.5px solid transparent;padding:7px 10px;cursor:pointer;background:var(--surface-2);transition:border-color .12s,background .12s,transform .1s;position:relative}
+.node:hover{transform:translateY(-1px)}
+.node.active{z-index:5}
+.node-cat{font-size:9px;font-weight:500;letter-spacing:.5px;opacity:.8;margin-bottom:2px;text-transform:uppercase}
+.node-title{font-size:11px;font-weight:500;color:var(--text-primary);line-height:1.3;margin-bottom:2px}
+.node-sub{font-size:10px;color:var(--text-secondary)}
+
+/* between-node connector */
+.joiner{width:8px;height:1.5px;flex-shrink:0}
+
+/* rail divider */
+.rdiv{height:1px;background:var(--border);margin:0 4px}
+
+/* ── FLOATING POPOVER ── */
+.popover{
+  position:fixed;
+  background:var(--surface-2);
+  border:0.5px solid var(--border-strong);
+  border-radius:12px;
+  width:300px;
+  box-shadow:0 4px 24px rgba(0,0,0,.14);
+  z-index:100;
+  display:none;
+}
+.popover.show{display:block}
+.pop-arrow{
+  position:absolute;
+  bottom:-7px;
+  left:50%;
+  transform:translateX(-50%);
+  width:14px;height:14px;
+  background:var(--surface-2);
+  border-right:0.5px solid var(--border-strong);
+  border-bottom:0.5px solid var(--border-strong);
+  transform:translateX(-50%) rotate(45deg);
+}
+.pop-arrow.above{bottom:auto;top:-7px;border-right:none;border-bottom:none;border-left:0.5px solid var(--border-strong);border-top:0.5px solid var(--border-strong)}
+
+.pop-head{padding:12px 14px 10px;border-bottom:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start}
+.pop-badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:100px;margin-bottom:5px}
+.pop-title{font-size:13px;font-weight:500;color:var(--text-primary);line-height:1.3}
+.pop-meta{font-size:11px;color:var(--text-secondary);margin-top:2px}
+.pop-close{width:22px;height:22px;border-radius:50%;border:0.5px solid var(--border);background:var(--surface-1);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-secondary);flex-shrink:0;margin-left:8px;margin-top:2px}
+.pop-close:hover{background:var(--surface-0)}
+
+.pop-body{padding:10px 14px 12px;display:flex;flex-direction:column;gap:8px;max-height:280px;overflow-y:auto}
+.pop-section{background:var(--surface-1);border:0.5px solid var(--border);border-radius:8px;padding:8px 10px}
+.pop-section-title{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:6px}
+.pop-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:3px 0;border-bottom:0.5px solid var(--border)}
+.pop-row:last-child{border-bottom:none}
+.pop-key{font-size:10px;color:var(--text-secondary);flex-shrink:0;padding-top:1px}
+.pop-val{font-size:11px;color:var(--text-primary);text-align:right;line-height:1.4}
+.pop-file{font-size:10px;color:var(--text-accent);margin-top:2px}
+.pop-ok{font-size:10px;color:#1B5E20;font-weight:500}
+</style>
+
+<!-- Floating popover (global, positioned by JS) -->
+<div class="popover" id="pop">
+  <div class="pop-arrow" id="pop-arrow"></div>
+  <div class="pop-head">
+    <div>
+      <div class="pop-badge" id="pop-badge"></div>
+      <div class="pop-title" id="pop-title"></div>
+      <div class="pop-meta" id="pop-meta"></div>
+    </div>
+    <div class="pop-close" id="pop-close">✕</div>
+  </div>
+  <div class="pop-body" id="pop-body"></div>
+</div>
+
+<div class="outer" id="outer">
+  <div class="a-col">
+    <div class="a-card">
+      <div class="a-init">AB</div>
+      <div class="a-name">Arjun Prakash Bhosale</div>
+      <div class="a-id">ATH-MH-2023-004521</div>
+      <div class="a-tag">Age 18 · Current</div>
+      <div class="a-sport">Athletics<br>MH State Sports Academy</div>
+    </div>
+  </div>
+  <div class="a-connector"><div class="a-connector-line"></div></div>
+  <div class="rails-area">
+    <div class="rails-wrap" id="rails"></div>
+  </div>
+</div>
+
+<script>
+const CATS={
+  medal:        {name:'Medal',         color:'#B71C1C',bg:'#FFEBEE'},
+  certificate:  {name:'Certificate',   color:'#1565C0',bg:'#E3F2FD'},
+  selection:    {name:'Selection',     color:'#6A1B9A',bg:'#F3E5F5'},
+  personal_best:{name:'Personal Best', color:'#E65100',bg:'#FFF3E0'},
+  scholarship:  {name:'Scholarship',   color:'#1B5E20',bg:'#E8F5E9'},
+};
+const ORDER=['medal','certificate','selection','personal_best','scholarship'];
+
+const data=[
+  {cat:'medal',title:'District Athletics Championship',sub:'Bronze · 100m Sprint',year:'2021',age:'U-14',
+   detail:{
+     result:{Position:'3rd Place',Result:'Bronze Medal',Time:'11.82s',Participants:'24'},
+     competition:{Event:'Nashik District Athletics Championship 2021',Organized:'Nashik DSO',Date:'March 2021',Venue:'Nashik Athletic Ground'},
+     docs:{CertNo:'DIST-2021-ATH-0342',Type:'Medal Certificate',Status:'✓ Verified',Files:'district_medal_2021.pdf'},
+     specific:{Event:'100m Sprint',Category:'U-14 Boys',Round:'Final',Lane:'4'},
+   }},
+  {cat:'medal',title:'Sub-District Athletics Meet',sub:'Gold · 200m Sprint',year:'2021',age:'U-14',
+   detail:{
+     result:{Position:'1st Place',Result:'Gold Medal',Time:'24.1s',Participants:'18'},
+     competition:{Event:'Sub-District Athletics Meet 2021',Organized:'Taluka Sports Committee',Date:'Feb 2021',Venue:'Taluka Ground, Nashik'},
+     docs:{CertNo:'SUB-2021-0091',Type:'Medal Certificate',Status:'✓ Verified',Files:'sub_district_gold_2021.jpg'},
+     specific:{Event:'200m Sprint',Category:'U-14 Boys',Round:'Final'},
+   }},
+  {cat:'medal',title:'MH State Athletics Championship',sub:'Silver · 100m U-18',year:'2024',age:'U-18',
+   detail:{
+     result:{Position:'2nd Place',Result:'Silver Medal',Time:'10.68s',Participants:'32'},
+     competition:{Event:'Maharashtra State Athletics Championship 2024',Organized:'Maharashtra Athletics Association',Date:'August 2024',Venue:'Shiv Chhatrapati Sports Complex, Pune'},
+     docs:{CertNo:'MHST-2024-ATH-1042',Type:'Medal Certificate',Status:'✓ Verified',Files:'state_silver_2024.pdf · result_sheet_2024.pdf'},
+     specific:{Event:'100m Sprint',Category:'U-18 Boys',Round:'Final',Wind:'+1.1 m/s'},
+   }},
+  {cat:'certificate',title:'Sports Marks Certificate',sub:'+5 marks · 10th Board',year:'2022',age:'U-16',
+   detail:{
+     result:{Type:'Board Exam Marks','Marks Added':'+5',Board:'Maharashtra State Board','Exam Year':'2022'},
+     competition:{Scheme:'Maharashtra Board Sports Marks Scheme',Approved:'School Education Dept',Date:'Oct 2022',Basis:'State-level competition'},
+     docs:{CertNo:'MSBM-2022-ATH-7841',Type:'Merit Certificate',Status:'✓ Verified',Files:'sports_marks_cert_2022.pdf'},
+     specific:{BasisOf:'State-level competition participation','Approved by':'School Education Dept, MH'},
+   }},
+  {cat:'selection',title:'State Team Selection',sub:'National Sub-Jr Athletics Squad',year:'2023',age:'U-16',
+   detail:{
+     result:{SelectedFor:'Maharashtra Sub-Jr Athletics Squad',Level:'National',Authority:'Maharashtra Athletics Association'},
+     competition:{Event:'State Team Selection — National Sub-Jr Squad',Organized:'Maharashtra Athletics Association',Date:'Jan 2023',Venue:'Balewadi Sports Complex'},
+     docs:{CertNo:'SEL-MH-2023-0842',Type:'Selection Certificate',Status:'✓ Verified',Files:'state_selection_letter_2023.png'},
+     specific:{Events:'100m + 4×100m Relay',Camp:'National Sub-Jr Athletics Championship 2023','Camp Start':'March 2023'},
+   }},
+  {cat:'selection',title:'Khelo India Youth Games Squad',sub:'KIYG 2025 — 100m Sprint',year:'2025',age:'U-18',
+   detail:{
+     result:{SelectedFor:'Maharashtra Team — KIYG 2025',Level:'National',Authority:'Sports Authority of India'},
+     competition:{Event:'KIYG 2025 Selection Trial',Organized:'SAI',Date:'Feb 2025',Venue:'Balewadi HPC'},
+     docs:{CertNo:'KIYG-2025-MH-ATH-007',Type:'Selection Letter',Status:'✓ Verified',Files:'kiyg_selection_2025.pdf'},
+     specific:{Event:'100m Sprint','KIYG Venue':'Guwahati',KID:'KID-MH-24-009841 (synced)'},
+   }},
+  {cat:'personal_best',title:'100m Sprint Personal Best',sub:'10.74s — National Camp',year:'2023',age:'U-16',
+   detail:{
+     result:{'Prev PB':'10.91s','New PB':'10.74s',Improvement:'0.17s','Recorded at':'National Sub-Jr Championship'},
+     competition:{Event:'National Sub-Jr Athletics Championship 2023',Organized:'Athletics Federation of India',Date:'March 2023',Venue:'JN Stadium, Delhi'},
+     docs:{CertNo:'PB-2023-AFI-0412',Type:'Record Certificate',Status:'✓ Verified',Files:'pb_certificate_2023.pdf'},
+     specific:{Timing:'10.74s (hand: 10.7s)',Wind:'+0.8 m/s',Category:'U-16 Boys'},
+   }},
+  {cat:'personal_best',title:'100m Sprint — State Record',sub:'10.58s — State Championship',year:'2024',age:'U-18',
+   detail:{
+     result:{'Prev PB':'10.74s','New PB':'10.58s',Improvement:'0.16s',RecordType:'Maharashtra State Record (U-18)'},
+     competition:{Event:'MH State Athletics Championship 2024',Organized:'Maharashtra Athletics Association',Date:'August 2024',Venue:'Shiv Chhatrapati Complex, Pune'},
+     docs:{CertNo:'MHR-2024-ATH-SR-001',Type:'State Record Certificate',Status:'✓ Verified',Files:'state_record_cert_2024.pdf'},
+     specific:{Timing:'10.58s (FAT)',Wind:'+1.1 m/s','Prev State Record':'10.61s (2021)','Holder Before':'R. Kadam'},
+   }},
+  {cat:'scholarship',title:'Lakshyavedh Sports Excellence',sub:'Annual Stipend · ₹60,000/yr',year:'2024',age:'U-18',
+   detail:{
+     result:{Scheme:'Mission Lakshyavedh',Amount:'₹60,000/year',Disbursement:'Monthly DBT · ₹5,000/month',Status:'Active'},
+     competition:{Selection:'Mission Lakshyavedh 2024',Organized:'Sports Authority of Maharashtra',Date:'Jan 2024',Center:'Balewadi HPC'},
+     docs:{CertNo:'LV-SCH-2024-ATH-0218',Type:'Scholarship Certificate',Status:'✓ Verified',Files:'lakshyavedh_scholarship_2024.pdf'},
+     specific:{EligibilityBasis:'State Team Selection 2023 + PB 10.74s',Coach:'Rajendra Patil','Training Center':'Balewadi HPC'},
+   }},
+];
+
+const grouped={};
+ORDER.forEach(c=>{ grouped[c]=data.filter(a=>a.cat===c); });
+
+let activeEl=null;
+const pop=document.getElementById('pop');
+const popArrow=document.getElementById('pop-arrow');
+
+function closePopover(){
+  pop.classList.remove('show');
+  if(activeEl){ activeEl.classList.remove('active'); activeEl=null; }
+}
+
+document.getElementById('pop-close').onclick=closePopover;
+
+document.addEventListener('click',e=>{
+  if(!pop.contains(e.target)&&!e.target.closest('.node')) closePopover();
+});
+
+function openPopover(nodeEl, ach){
+  if(activeEl===nodeEl){ closePopover(); return; }
+  if(activeEl) activeEl.classList.remove('active');
+  activeEl=nodeEl;
+  nodeEl.classList.add('active');
+
+  const cat=CATS[ach.cat];
+
+  // Populate popover
+  document.getElementById('pop-badge').textContent=cat.name;
+  document.getElementById('pop-badge').style.cssText=`background:${cat.bg};color:${cat.color}`;
+  document.getElementById('pop-title').textContent=ach.title;
+  document.getElementById('pop-meta').textContent=`${ach.sub} · ${ach.age} · ${ach.year}`;
+
+  // Detail sections
+  const body=document.getElementById('pop-body');
+  const sectionLabels={result:'Result',competition:'Competition & Event',docs:'Documents & Evidence',specific:'Category Detail'};
+  const sectionColors={result:'#C0392B',competition:'#1B5E20',docs:'#6A1B9A',specific:'#E65100'};
+  body.innerHTML='';
+  ['result','competition','docs','specific'].forEach(sec=>{
+    if(!ach.detail[sec]) return;
+    const div=document.createElement('div');
+    div.className='pop-section';
+    div.innerHTML=`<div class="pop-section-title" style="color:${sectionColors[sec]}">${sectionLabels[sec]}</div>`;
+    Object.entries(ach.detail[sec]).forEach(([k,v])=>{
+      const row=document.createElement('div');
+      row.className='pop-row';
+      const isFile=k==='Files'||k==='Status';
+      row.innerHTML=`<span class="pop-key">${k}</span><span class="pop-val ${isFile&&v.includes('✓')?'pop-ok':''}">${v}</span>`;
+      div.appendChild(row);
+    });
+    body.appendChild(div);
+  });
+
+  // Position popover above the node
+  pop.style.display='block';
+  pop.classList.add('show');
+
+  const nr=nodeEl.getBoundingClientRect();
+  const pr=pop.getBoundingClientRect();
+  const scrollY=window.scrollY||0;
+
+  let left=nr.left+(nr.width/2)-(pr.width/2);
+  left=Math.max(8,Math.min(left, window.innerWidth-pr.width-8));
+
+  const spaceAbove=nr.top-8;
+  const spaceBelow=window.innerHeight-nr.bottom-8;
+  const popH=pr.height||320;
+
+  let top;
+  if(spaceAbove>=popH+12){
+    // show above
+    top=nr.top+scrollY-popH-12;
+    popArrow.className='pop-arrow'; // arrow points DOWN (at the bottom of popover)
+    const arrowLeft=(nr.left+(nr.width/2))-left;
+    popArrow.style.left=Math.min(Math.max(arrowLeft,16),pr.width-16)+'px';
+  } else {
+    // show below
+    top=nr.bottom+scrollY+12;
+    popArrow.className='pop-arrow above'; // arrow points UP (at top of popover)
+    const arrowLeft=(nr.left+(nr.width/2))-left;
+    popArrow.style.left=Math.min(Math.max(arrowLeft,16),pr.width-16)+'px';
+  }
+
+  pop.style.left=left+'px';
+  pop.style.top=top+'px';
+}
+
+// Render rails
+const wrap=document.getElementById('rails');
+ORDER.forEach((catKey,ri)=>{
+  const cat=CATS[catKey];
+  const items=grouped[catKey];
+  if(!items||!items.length) return;
+
+  if(ri>0){
+    const d=document.createElement('div');
+    d.className='rdiv';
+    wrap.appendChild(d);
+  }
+
+  const rail=document.createElement('div');
+  rail.className='rail';
+
+  // Track line
+  const track=document.createElement('div');
+  track.className='track';
+  track.style.background=cat.color+'22';
+  rail.appendChild(track);
+
+  // Label
+  const label=document.createElement('div');
+  label.className='cat-label';
+  label.innerHTML=`<div class="cat-dot" style="background:${cat.color}"></div><div class="cat-text">${cat.name}</div>`;
+  rail.appendChild(label);
+
+  // Nodes
+  const nodes=document.createElement('div');
+  nodes.className='nodes';
+
+  items.forEach((ach,ni)=>{
+    if(ni>0){
+      const j=document.createElement('div');
+      j.className='joiner';
+      j.style.background=cat.color+'50';
+      nodes.appendChild(j);
+    }
+    const node=document.createElement('div');
+    node.className='node';
+    node.style.borderColor=cat.color+'55';
+    node.style.color=cat.color;
+    node.innerHTML=`
+      <div class="node-cat">${ach.age} · ${ach.year}</div>
+      <div class="node-title">${ach.title}</div>
+      <div class="node-sub">${ach.sub}</div>
+    `;
+    node.onclick=e=>{ e.stopPropagation(); openPopover(node,ach); };
+    nodes.appendChild(node);
+  });
+
+  rail.appendChild(nodes);
+  wrap.appendChild(rail);
+});
+</script>

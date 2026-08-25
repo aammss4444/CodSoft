@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 540" width="850" height="540">
+  <defs>
+    <linearGradient id="flag" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF9933" />
+      <stop offset="33%" stop-color="#FF9933" />
+      <stop offset="34%" stop-color="#FFFFFF" />
+      <stop offset="66%" stop-color="#FFFFFF" />
+      <stop offset="67%" stop-color="#138808" />
+      <stop offset="100%" stop-color="#138808" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Card Background -->
+  <rect x="20" y="20" width="810" height="500" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" filter="url(#shadow)"/>
+
+  <!-- Top Flag Ribbon -->
+  <rect x="20" y="20" width="810" height="12" rx="6" fill="url(#flag)"/>
+
+  <!-- Header -->
+  <g transform="translate(50, 48)">
+    <circle cx="28" cy="28" r="24" fill="#0f172a" opacity="0.06"/>
+    <text x="28" y="34" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0f172a" text-anchor="middle">🏛️</text>
+    
+    <text x="68" y="24" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#0f172a">भारत सरकार | Government of India</text>
+    <text x="68" y="44" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#475569">भारतीय विशिष्ट पहचान प्राधिकरण | UIDAI</text>
+  </g>
+
+  <!-- Photo Box -->
+  <g transform="translate(60, 130)">
+    <rect x="0" y="0" width="160" height="200" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="80" y="90" font-family="Arial, sans-serif" font-size="48" text-anchor="middle">🏃‍♂️</text>
+    <text x="80" y="130" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#334155" text-anchor="middle">Arjun Bhosale</text>
+    <rect x="15" y="160" width="130" height="24" rx="4" fill="#10B981" fill-opacity="0.15"/>
+    <text x="80" y="176" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#059669" text-anchor="middle">✓ VERIFIED PHOTO</text>
+  </g>
+
+  <!-- Athlete Personal Info -->
+  <g transform="translate(250, 135)">
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#64748B">नाव / Name:</text>
+    <text x="0" y="48" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#0F172A">Arjun Prakash Bhosale</text>
+    <text x="0" y="72" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="#334155">अर्जुन प्रकाश भोसले</text>
+
+    <text x="0" y="110" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#64748B">जन्म तारीख / DOB: <tspan font-weight="bold" fill="#0F172A">14/04/2008</tspan></text>
+    <text x="240" y="110" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#64748B">लिंग / Gender: <tspan font-weight="bold" fill="#0F172A">पुरुष / Male</tspan></text>
+
+    <text x="0" y="145" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#64748B">पत्ता / Address: <tspan font-weight="500" fill="#334155">At Post Gadchiroli, Maharashtra - 442605</tspan></text>
+  </g>
+
+  <!-- Digital Signature Badge / Verification Seal -->
+  <g transform="translate(560, 240)">
+    <rect x="0" y="0" width="240" height="130" rx="10" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+    <circle cx="30" cy="30" r="14" fill="#10B981"/>
+    <text x="30" y="36" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">✓</text>
+    <text x="54" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#065F46">DIGITALLY SIGNED</text>
+    <text x="54" y="42" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#047857">e-Sign Certified via Aadhaar</text>
+    
+    <line x1="15" y1="58" x2="225" y2="58" stroke="#A7F3D0" stroke-width="1"/>
+    <text x="15" y="76" font-family="Arial, sans-serif" font-size="10" fill="#065F46">Signer: Prakash Bhosale (Guardian)</text>
+    <text x="15" y="92" font-family="Arial, sans-serif" font-size="10" fill="#065F46">Date: 10 Jan 2023 14:32:05 IST</text>
+    <text x="15" y="108" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#059669">UIDAI Authentication: VALID</text>
+  </g>
+
+  <!-- Bottom Divider & Aadhaar Number -->
+  <line x1="40" y1="410" x2="810" y2="410" stroke="#E2E8F0" stroke-width="1.5"/>
+  <g transform="translate(425, 465)">
+    <text x="0" y="0" font-family="'Courier New', Courier, monospace" font-size="28" font-weight="bold" fill="#0F172A" text-anchor="middle" letter-spacing="4">
+      XXXX  XXXX  4521
+    </text>
+    <text x="0" y="24" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#DC2626" text-anchor="middle">
+      माझे आधार, माझी ओळख (मेरा आधार, मेरी पहचान)
+    </text>
+  </g>
+</svg>

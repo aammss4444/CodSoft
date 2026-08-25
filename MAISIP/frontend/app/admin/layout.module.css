@@ -1,0 +1,369 @@
+.adminLayout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f1f5f9;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.sidebar {
+  width: 280px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px 16px 24px;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.02);
+  z-index: 10;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logoArea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #0F172A;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logoSub {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: 0.1em;
+}
+
+.navMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.sidebarBottom {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: #64748b;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.navItem:hover {
+  background: rgba(15, 23, 42, 0.04);
+  color: #0F172A;
+}
+
+.active {
+  background: #0F172A;
+  color: #ffffff;
+}
+
+.active:hover {
+  background: #0F172A;
+  color: #ffffff;
+}
+
+.subNav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  margin-left: 16px; /* Moved left to align with the parent icon's left edge */
+  padding-left: 10px; 
+  position: relative;
+}
+
+/* Subtle connecting line that looks premium, not like a basic border */
+.subNav::before {
+  content: '';
+  position: absolute;
+  left: -1px; /* Center the 2px line on the 26px mark */
+  top: 0;
+  bottom: 4px;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.02));
+  border-radius: 2px;
+}
+
+.subNavItem {
+  display: flex;
+  align-items: center;
+  padding: 7px 11px; /* 1px smaller padding to account for the transparent border */
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid transparent; /* Prevents shifting when active border is applied */
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  letter-spacing: 0.01em;
+}
+
+.subNavItem:hover {
+  color: #0F172A;
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.subActive {
+  background: rgba(15, 23, 42, 0.08);
+  color: #0F172A;
+  font-weight: 700;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  padding-left: 8px; /* to offset the icon */
+}
+
+.activeIndicator {
+  margin-right: 4px;
+  margin-left: -4px;
+  stroke: #0F172A;
+}
+
+.navIcon {
+  opacity: 0.8;
+}
+
+.navItem.active .navIcon {
+  opacity: 1;
+}
+
+
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topbar {
+  height: 80px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 5;
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+  padding: 8px;
+  margin: 0 -8px;
+  background: transparent;
+  border-radius: 8px;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.userProfile:hover {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.userInfo {
+  text-align: left;
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.userName {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #0F172A;
+}
+
+.userRole {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0F172A, #334155);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  flex-shrink: 0;
+}
+
+.logoutIconBtn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.logoutIconBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.contentArea {
+  flex: 1;
+  padding: 24px 32px;
+  overflow-y: auto;
+}
+
+.navText {
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sidebar Minimization Styles */
+.sidebar.sidebarMinimized {
+  width: 88px;
+  padding: 32px 16px 16px 16px;
+  align-items: center;
+}
+
+.sidebarMinimized .logoArea {
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebarMinimized .logoWrapper {
+  display: none;
+}
+
+.sidebarMinimized .logoText,
+.sidebarMinimized .navText,
+.sidebarMinimized .userInfo {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.sidebarMinimized .navMenu {
+  width: 100%;
+  align-items: center;
+}
+
+.sidebarMinimized .navItem {
+  justify-content: center;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  gap: 0;
+}
+
+.sidebarMinimized .subNav {
+  display: none;
+}
+
+.sidebarMinimized .userProfile {
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.sidebarMinimized .userProfile:hover {
+  background: transparent;
+}
+
+.sidebarMinimized .logoutIconBtn {
+  display: none;
+}
+
+.toggleSidebarBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 8px;
+  position: absolute;
+  right: 16px;
+  top: 32px;
+  transition: all 0.2s;
+}
+
+.toggleSidebarBtn:hover {
+  background: #f1f5f9;
+  color: #0F172A;
+}
+
+.sidebarMinimized .toggleSidebarBtn {
+  position: static;
+  margin: 0;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.sidebarMinimized .toggleSidebarBtn:hover {
+  background: rgba(15, 23, 42, 0.08);
+}

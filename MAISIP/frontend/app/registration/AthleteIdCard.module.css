@@ -1,0 +1,315 @@
+.cardContainer {
+  perspective: 1000px;
+  width: 600px;
+  height: 380px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.cardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  border-radius: 20px;
+}
+
+.cardContainer.flipped .cardInner {
+  transform: rotateY(180deg);
+}
+
+.cardFront, .cardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.cardFront {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardBack {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  padding: 32px;
+}
+
+/* --- FRONT FACE --- */
+.svgLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.logoArea {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.logoIcon {
+  margin-bottom: 4px;
+}
+
+.logoText {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.logoSub {
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.headerTitle {
+  text-align: right;
+  color: #fff;
+}
+
+.mainTitle {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.subTitle {
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.cardType {
+  color: #D4AF37; /* Gold */
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 12px;
+}
+
+.middleSection {
+  flex: 1;
+  display: flex;
+  padding: 0 32px;
+  gap: 32px;
+  align-items: center;
+  margin-top: -10px; /* Adjusting for the wave */
+}
+
+.photoFrame {
+  width: 120px;
+  height: 150px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  border: 2px solid #D4AF37;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photoPlaceholder {
+  color: #cbd5e1;
+}
+
+.athleteDetails {
+  flex: 1;
+  padding-top: 20px;
+}
+
+.athleteName {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+}
+
+.athleteSport {
+  font-size: 16px;
+  font-weight: 500;
+  color: #475569;
+  margin: 0 0 24px 0;
+}
+
+.detailGrid {
+  display: flex;
+  gap: 40px;
+}
+
+.detailItem {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.detailLabel {
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.detailValue {
+  font-weight: 700;
+  color: #0F172A;
+  text-transform: uppercase;
+}
+
+.footer {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: relative;
+}
+
+.idBanner {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 55%;
+  background: #071F36; /* Navy */
+  border-top-right-radius: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 32px;
+  gap: 16px;
+}
+
+.idLabel {
+  color: #D4AF37;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.idDivider {
+  width: 2px;
+  height: 24px;
+  background: rgba(255,255,255,0.2);
+}
+
+.idValue {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+}
+
+.signatureArea {
+  margin-left: auto;
+  text-align: center;
+  z-index: 2;
+  margin-top: 10px;
+}
+
+.signatureImage {
+  height: 40px;
+  opacity: 0.8;
+  margin-bottom: -10px;
+}
+
+.signatureLine {
+  width: 200px;
+  height: 1px;
+  background: #D4AF37;
+  margin: 8px auto 4px auto;
+}
+
+.signatureTitle {
+  font-size: 10px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.signatureSub {
+  font-size: 9px;
+  color: #475569;
+}
+
+/* --- BACK FACE --- */
+.qrCodeContainer {
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 24px;
+}
+
+.backTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 8px;
+}
+
+.backInstruction {
+  font-size: 14px;
+  color: #475569;
+  text-align: center;
+  max-width: 80%;
+  margin-bottom: 24px;
+}
+
+.flipHint {
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Responsive Scaling */
+@media (max-width: 640px) {
+  .cardContainer {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1.58 / 1;
+    font-size: 0.8em; /* scale down fonts */
+  }
+}

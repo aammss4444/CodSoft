@@ -1,0 +1,375 @@
+.pageContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 16px;
+  margin: 0;
+}
+
+.addButton {
+  background-color: #0F172A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.addButton:hover {
+  background-color: #1E293B;
+  transform: translateY(-1px);
+}
+
+.filterContainer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #E2E8F0;
+  background: transparent;
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+.filterBtn:hover {
+  background: #F1F5F9;
+}
+
+.filterBtn.activeAll {
+  background: #0F172A;
+  color: white;
+  border-color: #0F172A;
+}
+
+.filterBtn.activeDrafts {
+  background: #F1F5F9;
+  color: #475569;
+  border-color: #CBD5E1;
+}
+
+.filterBtn.activePending {
+  background: #FFFBEB;
+  color: #B45309;
+  border-color: #FDE68A;
+}
+
+.filterBtn.activeCorrection {
+  background: #F3E8FF;
+  color: #7E22CE;
+  border-color: #E9D5FF;
+}
+
+.filterBtn.activeVerified {
+  background: #ECFDF5;
+  color: #059669;
+  border-color: #A7F3D0;
+}
+
+.filterBtn.activeRejected {
+  background: #FEF2F2;
+  color: #DC2626;
+  border-color: #FECACA;
+}
+
+
+.tableContainer {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 16px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.table td {
+  padding: 20px 24px;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 14px;
+  color: #334155;
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.achievementTitle {
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.statusVerified {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+.statusPending {
+  background: #FFFBEB;
+  color: #B45309;
+}
+
+.statusDraft {
+  background: #F1F5F9;
+  color: #475569;
+}
+
+.statusCorrection {
+  background: #F3E8FF;
+  color: #7E22CE;
+}
+
+.statusRejected {
+  background: #FEF2F2;
+  color: #DC2626;
+}
+
+.actionBtn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #E2E8F0;
+  background: white;
+  color: #3B82F6;
+  transition: all 0.2s;
+}
+
+.actionBtn:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+.emptyState {
+  background: #fff;
+  padding: 48px;
+  border-radius: 16px;
+  border: 1px solid #E2E8F0;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.emptyState p {
+  color: #64748b;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+
+.popoverContainer {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 10px;
+  width: 320px;
+  max-height: 380px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  cursor: default;
+  transform-origin: 46px 0;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.popoverCaret {
+  position: absolute;
+  top: -6px;
+  left: 40px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  transform: rotate(45deg);
+  border-top: 1px solid #e2e8f0;
+  border-left: 1px solid #e2e8f0;
+}
+
+.popoverHeader {
+  padding: 16px 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+.popoverCatTag {
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.popoverCloseBtn {
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.popoverCloseBtn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.popoverTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 12px 16px 4px;
+  line-height: 1.3;
+}
+
+.popoverSubtitle {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0 16px 16px;
+}
+
+.popoverScrollable {
+  overflow-y: auto;
+  padding: 0 16px 16px;
+  flex: 1;
+}
+
+.popoverScrollable::-webkit-scrollbar {
+  width: 6px;
+}
+.popoverScrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+.popoverScrollable::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+.popoverScrollable::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.detailBlock {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.detailBlockTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px 0;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 8px;
+}
+.detailRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.detailLabel {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.detailValue {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+  text-align: right;
+  max-width: 60%;
+}
+
+.statusVerified {
+  font-size: 14px;
+  font-weight: 600;
+  color: #059669;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.9) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}

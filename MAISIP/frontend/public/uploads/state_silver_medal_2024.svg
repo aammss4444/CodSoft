@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <rect x="0" y="0" width="800" height="600" fill="#f8fafc" />
+  <rect x="20" y="20" width="760" height="560" fill="none" stroke="#64748b" stroke-width="8" />
+  <rect x="28" y="28" width="744" height="544" fill="none" stroke="#94a3b8" stroke-width="2" />
+  
+  <text x="400" y="80" font-family="Arial" font-size="28" font-weight="bold" fill="#0f172a" text-anchor="middle">MAHARASHTRA STATE ATHLETICS ASSOCIATION</text>
+  
+  <text x="400" y="170" font-family="Georgia, serif" font-size="36" font-weight="bold" fill="#64748b" text-anchor="middle">MERIT CERTIFICATE - SILVER MEDAL</text>
+  
+  <text x="400" y="240" font-family="Arial" font-size="18" fill="#334155" text-anchor="middle">This is to certify that</text>
+  
+  <text x="400" y="290" font-family="Arial" font-size="32" font-weight="bold" fill="#0f172a" text-anchor="middle">Arjun Prakash Bhosale</text>
+  <line x1="250" y1="300" x2="550" y2="300" stroke="#cbd5e1" stroke-width="2"/>
+  
+  <text x="400" y="350" font-family="Arial" font-size="16" fill="#334155" text-anchor="middle">has secured SECOND PLACE in the</text>
+  <text x="400" y="390" font-family="Arial" font-size="20" font-weight="bold" fill="#1e40af" text-anchor="middle">200m SPRINT (Under-16 Boys)</text>
+  
+  <text x="400" y="430" font-family="Arial" font-size="16" fill="#334155" text-anchor="middle">with a performance of 22.40 seconds</text>
+  <text x="400" y="460" font-family="Arial" font-size="16" fill="#334155" text-anchor="middle">at the State Athletics Championship 2024</text>
+
+  <text x="150" y="520" font-family="Arial" font-size="14" fill="#0f172a" text-anchor="middle">Date: 25 Aug 2024</text>
+  
+  <text x="650" y="520" font-family="Arial" font-size="14" font-style="italic" fill="#0f172a" text-anchor="middle">Signed by Secretary</text>
+  <line x1="550" y1="500" x2="750" y2="500" stroke="#000" stroke-width="1"/>
+</svg>
